@@ -197,8 +197,8 @@ function probability(array) {
   if (probContain == true) {
     var count = [];
     array.forEach(function(i) { count[i] = (count[i]||0) + 1;});
-    console.log(count[textBaralho]);
-    console.log(`A probabilidade de puxar a carta "${textBaralho}" (tendo ${count[textBaralho]} delas no baralho) é de ${((count[textBaralho]/array.length)*100).toFixed(2)}%.`);
+    probPerCent = ((count[textBaralho]/array.length)*100).toFixed(2)
+    console.log(`A probabilidade de puxar a carta "${textBaralho}" (tendo ${count[textBaralho]} delas no baralho) é de ${probPerCent}%.`);
     document.getElementById("probSucc").innerHTML = `A probabilidade de puxar a carta "${textBaralho}" (tendo ${count[textBaralho]} delas no baralho) é de ${((count[textBaralho]/array.length)*100).toFixed(2)}%.`;
   } else {
     console.log(`"${textBaralho}" não é uma carta válida.`);
