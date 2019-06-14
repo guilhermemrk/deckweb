@@ -1,0 +1,51 @@
+body {
+  background-color: #d8d8d8;
+  font-family: monospace;
+}
+
+#fContent {
+  width: 70%;
+  height: 90% !important;
+  margin: auto;
+  border-radius: 2px;
+  border: 1px solid #bfbfbf;
+  background-color: white;
+}
+
+#uContent {
+  width: 90%;
+  margin: auto;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  border: 1px solid red;
+}
+
+#confPanel {
+  width: 98%;
+  padding: 1% 0% 1% 2%;
+  padding-bottom: 1%;
+  padding-left: 2%;
+  border: 1px solid blue;
+
+}
+
+#manipulationPanel {
+  width: 98%;
+  padding: 1% 0% 1% 2%;
+  border: 1px solid green;
+}
+
+#resultPanel {
+  width: 98%;
+  padding: 1% 0% 1% 2%;
+  border: 1px solid green;
+}
+
+#createDecksButton {
+  width: 150px;
+}
+
+#nBaralho {
+  width: 30px;
+  text-align: center;
+}

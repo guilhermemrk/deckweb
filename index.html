@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="./css/style.css">
+
+    <script type="text/javascript">
+
+    var baralho = [
+      'As de Copas',
+      '2 de Copas',
+      '3 de Copas',
+      '4 de Copas',
+      '5 de Copas',
+      '6 de Copas',
+      '7 de Copas',
+      '8 de Copas',
+      '9 de Copas',
+      '10 de Copas',
+      'Valete de Copas',
+      'Dama de Copas',
+      'Rei de Copas',
+      'As de Espadas',
+      '2 de Espadas',
+      '3 de Espadas',
+      '4 de Espadas',
+      '5 de Espadas',
+      '6 de Espadas',
+      '7 de Espadas',
+      '8 de Espadas',
+      '9 de Espadas',
+      '10 de Espadas',
+      'Valete de Espadas',
+      'Dama de Espadas',
+      'Rei de Espadas',
+      'As de Paus',
+      '2 de Paus',
+      '3 de Paus',
+      '4 de Paus',
+      '5 de Paus',
+      '6 de Paus',
+      '7 de Paus',
+      '8 de Paus',
+      '9 de Paus',
+      '10 de Paus',
+      'Valete de Paus',
+      'Dama de Paus',
+      'Rei de Paus',
+      'As de Ouros',
+      '2 de Ouros',
+      '3 de Ouros',
+      '4 de Ouros',
+      '5 de Ouros',
+      '6 de Ouros',
+      '7 de Ouros',
+      '8 de Ouros',
+      '9 de Ouros',
+      '10 de Ouros',
+      'Valete de Ouros',
+      'Dama de Ouros',
+      'Rei de Ouros'
+    ]
+    var bTemplate = [
+      'As de Copas',
+      '2 de Copas',
+      '3 de Copas',
+      '4 de Copas',
+      '5 de Copas',
+      '6 de Copas',
+      '7 de Copas',
+      '8 de Copas',
+      '9 de Copas',
+      '10 de Copas',
+      'Valete de Copas',
+      'Dama de Copas',
+      'Rei de Copas',
+      'As de Espadas',
+      '2 de Espadas',
+      '3 de Espadas',
+      '4 de Espadas',
+      '5 de Espadas',
+      '6 de Espadas',
+      '7 de Espadas',
+      '8 de Espadas',
+      '9 de Espadas',
+      '10 de Espadas',
+      'Valete de Espadas',
+      'Dama de Espadas',
+      'Rei de Espadas',
+      'As de Paus',
+      '2 de Paus',
+      '3 de Paus',
+      '4 de Paus',
+      '5 de Paus',
+      '6 de Paus',
+      '7 de Paus',
+      '8 de Paus',
+      '9 de Paus',
+      '10 de Paus',
+      'Valete de Paus',
+      'Dama de Paus',
+      'Rei de Paus',
+      'As de Ouros',
+      '2 de Ouros',
+      '3 de Ouros',
+      '4 de Ouros',
+      '5 de Ouros',
+      '6 de Ouros',
+      '7 de Ouros',
+      '8 de Ouros',
+      '9 de Ouros',
+      '10 de Ouros',
+      'Valete de Ouros',
+      'Dama de Ouros',
+      'Rei de Ouros'
+    ]
+
+    function repeat(array, n){
+        var out = [];
+        for(var i = 0; i < n; i++) {
+            out = out.concat(array);
+        }
+        return out;
+    }
+    function remBaralhoF(baralho) {
+      let textBaralho = document.getElementById("remBaralho").value;
+      console.log(`textBaralho: ${textBaralho}`);
+    }
+    function upRemBaralho(array, remBaralho){
+      let textBaralho = document.getElementById("remBaralho").value;
+      let remContain = array.includes(textBaralho);
+
+      if (remContain == true) {
+        remove(array, textBaralho)
+        console.log(`"${textBaralho}" foi removida do baralho. ${array.length} cartas no total.`);
+        count[textBaralho]--
+      } else {
+        console.log(`"${textBaralho}" não é uma carta válida.`);
+      }
+
+
+    }
+    function cnBaralho(baralho) {
+      let textBaralho = document.getElementById("nBaralho").value;
+      let numBaralho = parseInt(textBaralho);
+      console.log(`textBaralho: ${textBaralho}`);
+      console.log(`numBaralho: ${numBaralho}`);
+      array = repeat(baralho, numBaralho);
+      var count = [];
+      array.forEach(function(i) { count[i] = (count[i]||0) + 1;});
+      console.log(count[i]);
+    }
+    function docW(array) {
+      document.getElementById("createDecksButton").style.visibility = "hidden";
+      let numBaralho = array.length/52;
+      document.getElementById("howManyDecks").innerHTML = `${numBaralho} baralho/s criado/s! ${array.length} cartas no total.`;
+      console.log(array);
+    }
+    function checkDeck(array) {
+      console.log(array);
+    }
+    function remove(arr) {
+        var what, a = arguments, L = a.length, ax;
+        while (L > 1 && arr.length) {
+            what = a[--L];
+            if (arr.indexOf(what) !== -1){
+              ax = arr.indexOf(what)
+              arr.splice(ax, 1)
+            } else {}
+        }
+        return arr;
+    }
+    array = repeat(baralho, numBaralho);
+    </script>
+
+  </head>
+  <body>
+
+    <div id="fContent">
+
+      <div id="uContent">
+        <div id="confPanel">
+
+            <span id="howManyDecks">
+              <label for="nBaralho">Quantos baralhos?</label>
+              <input type="text" onfocusout="cnBaralho(baralho)" name="nBaralho" id="nBaralho" maxlength="3" value="">
+            </span>
+
+             <button onclick="docW(array)" id="createDecksButton">Gerar baralhos</button>
+
+        </div>
+
+        <div id="manipulationPanel">
+
+          <span id="whatRemove">
+            <label for="remBaralho">Qual carta você gostaria de remover?</label>
+            <input type="text" onfocusout="remBaralhoF(array)" name="remBaralho" id="remBaralho" maxlength="30" value="">
+          </span>
+
+          <button onclick="upRemBaralho(array, remBaralho)" id="remCardButton">Remover</button>
+          <span id="value"></span>
+
+        </div>
+
+        <div id="resultPanel">
+
+          <button onclick="checkDeck(array)" id="checkDeckButton">Check Deck</button>
+
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </body>
+</html>
