@@ -4,8 +4,8 @@ body {
 }
 
 #fContent {
-  width: 70%;
-  height: 90% !important;
+  width: 50%;
+  height: 80% !important;
   margin: auto;
   border-radius: 2px;
   border: 1px solid #bfbfbf;
@@ -13,11 +13,11 @@ body {
 }
 
 #uContent {
-  width: 90%;
+  width: 100%;
+  height: 10  0% !important;
   margin: auto;
-  padding-top: 1%;
   padding-bottom: 1%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 #confPanel {
@@ -25,20 +25,35 @@ body {
   padding: 1% 0% 1% 2%;
   padding-bottom: 1%;
   padding-left: 2%;
-  border: 1px solid blue;
-
+  border: 1px solid #d8d8d8;
 }
 
-#manipulationPanel {
+.manipulationPanel {
   width: 98%;
   padding: 1% 0% 1% 2%;
-  border: 1px solid green;
+  border: 1px solid #d8d8d8;
 }
 
 #resultPanel {
-  width: 98%;
+  width: 100%;
+  height: 83%;
+  /* border: 1px solid black; */
+}
+
+#resultPanelOne {
+  width: 18%;
+  height: 96%;
   padding: 1% 0% 1% 2%;
-  border: 1px solid green;
+  border: 1px solid #d8d8d8;
+  float: left;
+}
+
+#resultPanelTwo {
+  width: 77.55%;
+  height: 96%;
+  padding: 1.5% 0% 0.5% 2%;
+  border: 1px solid #d8d8d8;
+  float: left;
 }
 
 #createDecksButton {
@@ -48,4 +63,8 @@ body {
 #nBaralho {
   width: 30px;
   text-align: center;
+}
+
+#checkDeckShow {
+  margin-top: 10%;
 }

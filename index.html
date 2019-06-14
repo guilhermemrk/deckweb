@@ -1,11 +1,14 @@
-<!DOCTYPE html>
+<!DOCTYPE html4>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
     <link rel="stylesheet" href="./css/style.css">
-
     <script type="text/javascript">
+    const Nome = 'Calculador de probabilidade'
+    const Autor = 'Alecksander'
+    const Versao = 'v1.0'
+    const Descricao = 'Script que calcula a probabilidade de puxar uma carta (a critério do usuário).'
+    document.title = `${Nome} ${Versao}`
 
     var baralho = [
       'As de Copas',
@@ -127,38 +130,47 @@
       let textBaralho = document.getElementById("remBaralho").value;
       console.log(`textBaralho: ${textBaralho}`);
     }
-    function upRemBaralho(array, remBaralho){
+    function upRemBaralho(array){
       let textBaralho = document.getElementById("remBaralho").value;
-      let remContain = array.includes(textBaralho);
-
+      let remContain = bTemplate.includes(textBaralho);
       if (remContain == true) {
         remove(array, textBaralho)
         console.log(`"${textBaralho}" foi removida do baralho. ${array.length} cartas no total.`);
+        document.getElementById("remSucc").innerHTML = `"${textBaralho}" foi removida do baralho. ${array.length} cartas no total.`;
+        var count = [];
+        array.forEach(function(i) { count[i] = (count[i]||0) + 1;});
         count[textBaralho]--
       } else {
         console.log(`"${textBaralho}" não é uma carta válida.`);
       }
-
-
     }
-    function cnBaralho(baralho) {
+    function cnBaralho(baralho, count) {
       let textBaralho = document.getElementById("nBaralho").value;
-      let numBaralho = parseInt(textBaralho);
+      array = repeat(baralho, textBaralho);
       console.log(`textBaralho: ${textBaralho}`);
-      console.log(`numBaralho: ${numBaralho}`);
-      array = repeat(baralho, numBaralho);
       var count = [];
       array.forEach(function(i) { count[i] = (count[i]||0) + 1;});
-      console.log(count[i]);
+      console.log(count);
     }
     function docW(array) {
       document.getElementById("createDecksButton").style.visibility = "hidden";
       let numBaralho = array.length/52;
       document.getElementById("howManyDecks").innerHTML = `${numBaralho} baralho/s criado/s! ${array.length} cartas no total.`;
-      console.log(array);
     }
     function checkDeck(array) {
-      console.log(array);
+      // console.log(array);
+      function show(array) {
+        for (var i=0; i>=0; i++) {
+          array[i] = array[i] + '<br />';
+          return array.join('');
+        }
+      }
+      var showArray = array.slice(0);
+      document.getElementById("checkDeckShow").innerHTML = showArray.sort().reverse().splice(0, 30).join('<br />');
+      document.getElementById("checkDeckShowTwo").innerHTML = `<br /> ... e mais ${(showArray.length)}`;
+      var count = [];
+      array.forEach(function(i) { count[i] = (count[i]||0) + 1;});
+      console.log(count);
     }
     function remove(arr) {
         var what, a = arguments, L = a.length, ax;
@@ -171,48 +183,77 @@
         }
         return arr;
     }
-    array = repeat(baralho, numBaralho);
+    function Add(array){
+      let textBaralho = document.getElementById("addBaralho").value;
+      let addContain = bTemplate.includes(textBaralho);
+      if (addContain == true) {
+        array.push(textBaralho)
+        console.log(`"${textBaralho}" foi adicionada ao baralho. ${array.length} cartas no total.`);
+        document.getElementById("addSucc").innerHTML = `"${textBaralho}" foi adicionada ao baralho. ${array.length} cartas no total.`;
+        var count = [];
+        array.forEach(function(i) { count[i] = (count[i]||0) + 1;});
+        count[textBaralho]++
+      } else {
+        console.log(`"${textBaralho}" não é uma carta válida.`);
+      }
+    }
+    function probability(array) {
+      let textBaralho = document.getElementById("probBaralho").value;
+      let probContain = bTemplate.includes(textBaralho);
+      if (probContain == true) {
+        var count = [];
+        array.forEach(function(i) { count[i] = (count[i]||0) + 1;});
+        console.log(count[textBaralho]);
+        console.log(`A probabilidade de puxar a carta "${textBaralho}" (tendo ${count[textBaralho]} delas no baralho) é de ${((count[textBaralho]/array.length)*100).toFixed(2)}%.`);
+        document.getElementById("probSucc").innerHTML = `A probabilidade de puxar a carta "${textBaralho}" (tendo ${count[textBaralho]} delas no baralho) é de ${((count[textBaralho]/array.length)*100).toFixed(2)}%.`;
+      } else {
+        console.log(`"${textBaralho}" não é uma carta válida.`);
+      }
+    }
     </script>
-
   </head>
   <body>
-
     <div id="fContent">
-
       <div id="uContent">
         <div id="confPanel">
-
             <span id="howManyDecks">
               <label for="nBaralho">Quantos baralhos?</label>
               <input type="text" onfocusout="cnBaralho(baralho)" name="nBaralho" id="nBaralho" maxlength="3" value="">
             </span>
-
              <button onclick="docW(array)" id="createDecksButton">Gerar baralhos</button>
-
         </div>
-
-        <div id="manipulationPanel">
-
+        <div class="manipulationPanel">
           <span id="whatRemove">
             <label for="remBaralho">Qual carta você gostaria de remover?</label>
             <input type="text" onfocusout="remBaralhoF(array)" name="remBaralho" id="remBaralho" maxlength="30" value="">
           </span>
-
-          <button onclick="upRemBaralho(array, remBaralho)" id="remCardButton">Remover</button>
-          <span id="value"></span>
-
+          <button onclick="upRemBaralho(array)" id="remCardButton">Remover</button><br /><br />
+          <span id="remSucc"></span>
         </div>
-
-        <div id="resultPanel">
-
-          <button onclick="checkDeck(array)" id="checkDeckButton">Check Deck</button>
-
+        <div class="manipulationPanel">
+          <span id="whatAdd">
+            <label for="addBaralho">Qual carta você gostaria de adicionar?</label>
+            <input type="text" name="addBaralho" id="addBaralho" maxlength="30" value="">
+          </span>
+          <button onclick="Add(array)" id="addCardButton">Adicionar</button><br /><br />
+          <span id="addSucc"></span>
+        </div>
+        <div id='resultPanel'>
+          <div id="resultPanelOne">
+            <button onclick="checkDeck(array)" id="checkDeckButton">Check Deck</button>
+            <div id='checkDeckShow'></div>
+            <span id="checkDeckShowTwo"></span>
+          </div>
+          <div id="resultPanelTwo">
+            <span id="whatCardProb">
+              <label for="probBaralho">Qual carta você gostaria de puxar?</label>
+              <input type="text" name="probBaralho" id="probBaralho" maxlength="30" value="">
+            </span>
+            <button onclick="probability(array)" id="probBaralhoButton">Calcular</button><br /><br />
+            <span id="probSucc"></span>
+          </div>
         </div>
       </div>
-
-
-
     </div>
-
   </body>
 </html>
